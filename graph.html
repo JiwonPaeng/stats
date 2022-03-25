@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>서버 접속 시간</title>
+        <meta charset = "utf-8">
+
+        <style>
+            #first {
+                border-left : 0px;
+            }
+            #last {
+                border-bottom : 0px;
+            }
+            .wrapper {
+                display : grid;
+                grid-template-rows : 1fr 1fr;
+            }
+            .unit_wrapper {
+                display : grid;
+                grid-template-columns: 120px 1fr 1fr 1fr 1fr 1fr 1fr;
+                position : static;
+                
+                border : 0px gray solid;
+                height : 800px;
+            }
+            .unit_init {
+                border-right : 0px;
+            }
+            .unit {
+                border-left : 1px gray solid;
+                width : 100px;
+            }
+            .index_wrapper {
+                display : grid;
+                grid-template-columns: 120px 1fr 1fr 1fr 1fr 1fr 1fr;
+                border : 0px solid blue;
+                position : relative;
+                bottom : 806px;
+                grid-area : footer;
+            }
+            .index {
+                border : 0px blue solid;
+                text-align : right;
+            }
+            .graph_box {
+                position : relative;
+                display : grid;
+                bottom : 806px;
+                grid-template-rows : 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                border : 2px gray solid;
+                height : 800px;
+            }
+            .element {
+                display : grid;
+                grid-template-columns: 120px 1fr;
+                margin : 0px;
+            }
+            .name {
+                display : block;
+                line-height : 460%;
+                text-align : center;
+                border-right : 2px gray solid;
+                border-bottom : 2px gray solid;
+            }
+            .box {
+                display : grid;
+                grid-template-rows : 1fr 1.5fr 1fr;
+            }
+            .bar {
+                display : grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
+            .sidebar {
+                position : fixed;
+                right : 15px;
+                border : 1px solid gray;
+                height : 500px;
+                top : 200px;
+                width : 100px;
+                display : grid;
+                background-color : white;
+                opacity : 0.9;
+                grid-template-rows : repeat(7, 1fr);
+            }
+            .sidebar_element {
+                display : grid;
+                grid-template-rows: 1fr 1fr 1fr;
+                border : 1px gray solid;
+            }
+            .sidebar_line {
+                display : grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            .color_indicator {
+                margin-left : 7px;
+                width : 20px;
+                height : 20px;
+                background-color : black;
+            }
+            .one {
+                background-color : rgb(94, 94, 255);
+            }
+            .two {
+                background-color : red;
+            }
+            .three {
+                background-color : yellow;
+            }
+            .four {
+                background-color : green;
+            }
+            .five {
+                background-color : orange;
+            }
+            .six {
+                background-color : lightblue;
+            }
+            .seven {
+                background-color : purple;
+            }
+            h1 {
+                text-align : center;
+                height : 50px;
+            }
+            #jiwonpaeng .bar {
+                grid-template-columns: 29.76fr 2.32fr 5.30fr 14.34fr 2.29fr 23.73fr 17.21fr 5.06fr;
+            }
+            #okh01133 .bar {
+                grid-template-columns: 31.29fr 2.45fr 4.28fr 14.77fr 1.24fr 9.75fr 1.82fr 34.39fr;
+            }
+            #apple12315 .bar {
+                grid-template-columns: 10.56fr 0.30fr 0.23fr 4.48fr 2.03fr 21.98fr 20.57fr 39.85fr;
+            }
+            #cheonggukjang .bar {
+                grid-template-columns: 15.23fr 0.00fr 0.00fr 8.49fr 0.00fr 15.89fr 19.99fr 40.40fr;
+            }
+            #Simpta .bar {
+                grid-template-columns: 13.27fr 0.00fr 0.00fr 0.89fr 0.00fr 10.27fr 25.08fr 50.50fr;
+            }
+            #prestige137 .bar {
+                grid-template-columns: 0.97fr 0.00fr 0.12fr 0.09fr 0.00fr 2.12fr 34.38fr 62.32fr;
+            }
+            #ixez10 .bar {
+                grid-template-columns: 2.89fr 0.00fr 0.00fr 11.88fr 2.20fr 3.32fr 2.53fr 77.17fr;
+            }
+            #C4_Explosive .bar {
+                grid-template-columns: 16.74fr 0.00fr 1.41fr 0.49fr 0.00fr 0.00fr 0.00fr 81.36fr;
+            }
+            #V5landers .bar {
+                grid-template-columns: 0.00fr 0.00fr 0.00fr 0.00fr 0.00fr 0.00fr 16.81fr 83.19fr;
+            }
+            #FireEggs .bar {
+                grid-template-columns: 2.56fr 0.81fr 0.16fr 2.95fr 0.54fr 6.06fr 3.43fr 83.49fr;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>play time</h1>
+        <div class = "wrapper">
+            <div class = "unit_wrapper">
+                <div class = "unit_init"></div>
+                <div id = "first" class = "unit"></div>
+                <div class = "unit"></div>
+                <div class = "unit"></div>
+                <div class = "unit"></div>
+                <div class = "unit"></div>
+                <div class = "unit"></div>
+            </div>
+            <div class = "graph_box">
+                <div id = "jiwonpaeng" class = "element">
+                    <div class = "name">jiwonpaeng</div>
+                    <div class = "box">
+                        <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one" title = "시즌 1 : 178.5h"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                        <div class = "filler"></div>
+                    </div>
+                </div>
+                <div id = "okh01133" class = "element">
+                    <div class = "name">okh01133</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div>
+                </div>
+                </div>
+                <div id = "apple12315" class = "element">
+                    <div class = "name">apple12315</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "cheonggukjang" class = "element">
+                    <div class = "name">cheonggukjang</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "Simpta" class = "element">
+                    <div class = "name">Simpta</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "prestige137" class = "element">
+                    <div class = "name">prestige137</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "ixez10" class = "element">
+                    <div class = "name">ixez10</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "C4_Explosive" class = "element">
+                    <div class = "name">C4_Explosive</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "V5landers" class = "element">
+                    <div class = "name">V5landers</div>
+                    <div class = "box">
+                    <div class = "filler"></div>
+                        <div class = "bar">
+                            <div class = "one"></div>
+                            <div class = "two"></div>
+                            <div class = "three"></div>
+                            <div class = "four"></div>
+                            <div class = "five"></div>
+                            <div class = "six"></div>
+                            <div class = "seven"></div>
+                            <div class = "none"></div>
+                        </div>
+                    <div class = "filler"></div></div>
+                </div>
+                <div id = "FireEggs" class = "element">
+                    <div id = "last" class = "name">FireEggs</div>
+                        <div class = "box">
+                        <div class = "filler"></div>
+                            <div class = "bar">
+                                <div class = "one"></div>
+                                <div class = "two"></div>
+                                <div class = "three"></div>
+                                <div class = "four"></div>
+                                <div class = "five"></div>
+                                <div class = "six"></div>
+                                <div class = "seven"></div>
+                                <div class = "none"></div>
+                            </div>
+                        <div class = "filler"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "index_wrapper">
+            <div class = "index">0h</div>
+            <div class = "index">100h</div>
+            <div class = "index">200h</div>
+            <div class = "index">300h</div>
+            <div class = "index">400h</div>
+            <div class = "index">500h</div>
+            <div class = "index">600h</div>
+        </div>
+        <div class = "sidebar">
+            
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : rgb(94, 94, 255)"></div>
+                    <div class = "text-box">S1</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : red"></div>
+                    <div class = "text-box">S2</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : yellow"></div>
+                    <div class = "text-box">S3</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : green"></div>
+                    <div class = "text-box">S4</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : orange"></div>
+                    <div class = "text-box">S5</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : lightblue"></div>
+                    <div class = "text-box">S6</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+
+            <div class = "sidebar_element">
+                <div class = "sidebar_filler"></div>
+                <div class = "sidebar_line">
+                    <div class = "color_indicator" style = "background-color : purple"></div>
+                    <div class = "text-box">S7</div>
+                </div>
+                <div class = "sidebar_filler"></div>
+            </div>
+        </div>
+    </body>
+</html>
